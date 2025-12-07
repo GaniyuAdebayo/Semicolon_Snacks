@@ -86,8 +86,8 @@ case 1 -> {System.out.println("Phone Book");
  
 		}
 	}
-//END OF CASE 1
-case 2 -> {System.out.println("Messages"); 							//1
+
+case 2 -> {System.out.println("Messages"); 							
 
 	String messages = """
 
@@ -107,14 +107,14 @@ case 2 -> {System.out.println("Messages"); 							//1
 
 	System.out.println(messages);
 	int messageOptions = input.nextInt();
-	switch (messageOptions){ 									//2
+	switch (messageOptions){ 									
 	case 1 -> System.out.println("Write messages");
 	case 2 -> System.out.println("Inbox");
 	case 3 -> System.out.println("Outbox");
 	case 4 -> System.out.println("Picture messages");
 	case 5 -> System.out.println("Templates");
 	case 6 -> System.out.println("Smileys");
-	case 7 -> {System.out.println("Message settings"); 				//3
+	case 7 -> {System.out.println("Message settings"); 				
 
 
 		String messageSettings = """
@@ -126,8 +126,8 @@ case 2 -> {System.out.println("Messages"); 							//1
 	""";
 	System.out.println(messageSettings);
 	int messageSettingsOptions = input.nextInt();
-	switch (messageSettingsOptions){							//4
-	case 1 -> {System.out.println("Set 1^2");						//5
+	switch (messageSettingsOptions){							
+	case 1 -> {System.out.println("Set 1^2");						
 
 	String oneSquare = """
 
@@ -140,7 +140,7 @@ case 2 -> {System.out.println("Messages"); 							//1
 
 	System.out.println(oneSquare);
 	int oneSquareOptions = input.nextInt();
-	switch (oneSquareOptions){								//6
+	switch (oneSquareOptions){								
 
 	case 1 -> System.out.println("Message centre number");
 	case 2 -> System.out.println("Message sent as");
@@ -148,13 +148,13 @@ case 2 -> {System.out.println("Messages"); 							//1
 	default -> System.out.println("Invalid input");
 
 
-						} 							//6
+						} 							
 
 
 
 
-					} 								//5
-	case 2 ->	{System.out.println("Common ^3");					//a
+					} 								
+	case 2 ->	{System.out.println("Common ^3");					
 	String commonCube = """
 
 	1. Delivery reports
@@ -166,19 +166,19 @@ case 2 -> {System.out.println("Messages"); 							//1
 
 	System.out.println(commonCube);
 	int commonCubeOptions = input.nextInt();
-	switch(commonCubeOptions){								//b
+	switch(commonCubeOptions){								
 	case 1 -> System.out.println("Delivery reports");
 	case 2 -> System.out.println("Reply via same centre");
 	case 3 -> System.out.println("Character support");
 	default -> System.out.println("Invalid input");
 
 
-}													//b
-}													//a
+}													
+}													
 
 
-				}									//4
-			} 										//3
+				}									
+			} 										
 
 	case 8 -> System.out.println("Info service");
 	case 9 -> System.out.println("Voice mailbox number");
@@ -186,13 +186,13 @@ case 2 -> {System.out.println("Messages"); 							//1
 	default -> System.out.println("Invalid input");
 	
 
-		} 											//2
+		} 											
 
-	}												 //1
+	}												 
 
-//END OF CASE 2
+
 case 3 -> System.out.println("Chat");
-case 4 -> {System.out.println("Call register");						//1
+case 4 -> {System.out.println("Call register");						
 	String callRegister = """
 	
 	1. Missed calls
@@ -208,13 +208,13 @@ case 4 -> {System.out.println("Call register");						//1
 
 	System.out.println(callRegister);
 	int callRegisterOptions = input.nextInt();
-	switch (callRegisterOptions){								//2
+	switch (callRegisterOptions){								
 
 	case 1 -> System.out.println("Missed calls");
 	case 2 -> System.out.println("Received calls");
 	case 3 -> System.out.println("Dialed numbers");
 	case 4 -> System.out.println("Erase recent call lists");
-	case 5 -> {System.out.println("Show call duration");				//3
+	case 5 -> {System.out.println("Show call duration");				
 
 	String callDuration = """
 
@@ -229,7 +229,7 @@ case 4 -> {System.out.println("Call register");						//1
 
 	System.out.println(callDuration);
 	int callDurationOptions = input.nextInt();
-	switch (callDurationOptions){								//3
+	switch (callDurationOptions){								
 
 	case 1 -> System.out.println("Last call duration");
 	case 2 -> System.out.println("All calls' duration");
@@ -239,11 +239,11 @@ case 4 -> {System.out.println("Call register");						//1
 	default -> System.out.println("Invalid input");
 
 
-}													//3			
+}																
 
 
-}													//3
-	case 6 -> {System.out.println("Show call costs");					//a				
+}													
+	case 6 -> {System.out.println("Show call costs");									
 
 	String callCost = """
 
@@ -261,7 +261,7 @@ case 4 -> {System.out.println("Call register");						//1
 
 
 }
-}													//b
+}													
 
 	case 7 -> {System.out.println("Call cost settings");
 
@@ -289,11 +289,11 @@ case 4 -> {System.out.println("Call register");						//1
 	default -> System.out.println("Invalid input");
 
 
-}													//2
+}													
 
-}													//1
+}													
 
-//END OF CASE 4
+
 case 5 -> {System.out.println("Tones");
 	String tones = """
 
