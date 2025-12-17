@@ -10,16 +10,17 @@ public class CreditCardTest{
 		String number = input.next();
 
 		boolean numberOnly = true;
-		for (int counter = 0; counter < number.length(); counter++){
+		
+		for (char check: number.toCharArray()){
 
-			if (Character.isLetter(number.charAt(counter)) == true || Character.isWhitespace(number.charAt(counter)) == true ){
-				
+			if (!Character.isDigit(check)){
 				numberOnly = false;
 				break;
 			}
+
 		}
 
-		if ((number.length() >= 13 && number.length() <= 16) || (numberOnly == true)){
+		if ((number.length() >= 13 && number.length() <= 16) && (numberOnly == true)){
 
 			CreditCard.creditCardType(number);
 			CreditCard.cardTypeLength(number);
