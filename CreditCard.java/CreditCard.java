@@ -9,9 +9,18 @@ public class CreditCard{
 		System.out.println("Enter Card Number: ");
 		String number = input.next();
 
-		creditCardType(number);
-		cardTypeLength(number);
-		creditCardValidityStatus(number);
+		if (number.length() >= 13 && number.length() <= 16){
+
+			creditCardType(number);
+			cardTypeLength(number);
+			creditCardValidityStatus(number);
+
+		}
+
+		else{
+
+			System.out.println("Invalid Card!");
+		}
 		
 	}
 	public static void creditCardValidityStatus(String cardNumber){
@@ -70,10 +79,7 @@ public class CreditCard{
 
 		int cardNumberLength = cardNumber.length();
 
-		if (cardNumberLength >= 13 && cardNumberLength <= 16) {
-			System.out.printf("Credit Card Digit Length: %d%n", cardNumberLength);
-		} else {
-			System.out.println("Credit Card Digit Length: Invalid length");
-		}		
+		System.out.printf("Credit Card Digit Length: %d%n", cardNumberLength);
+	
 	}
 }
