@@ -2,27 +2,7 @@ import java.util.Scanner;
 
 public class CreditCard{
 
-	public static void main (String [] args){
-
-		Scanner input = new Scanner (System.in);
-
-		System.out.println("Enter Card Number: ");
-		String number = input.next();
-
-		if (number.length() >= 13 && number.length() <= 16){
-
-			creditCardType(number);
-			cardTypeLength(number);
-			creditCardValidityStatus(number);
-
-		}
-
-		else{
-
-			System.out.println("Invalid Card!");
-		}
-		
-	}
+	
 	public static void creditCardValidityStatus(String cardNumber){
 
 		int cardNumberLength = cardNumber.length();
