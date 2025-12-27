@@ -133,6 +133,11 @@ public class CheckOutSystem{
 
 		}
 
+		else{
+
+			System.out.println("Insufficient Funds!")
+		}
+
 	}
 
 }
