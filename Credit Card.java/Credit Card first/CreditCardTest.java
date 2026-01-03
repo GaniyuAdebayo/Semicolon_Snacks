@@ -7,7 +7,7 @@ public class CreditCardTest{
 		Scanner input = new Scanner (System.in);
 
 		System.out.println("Enter Card Number: ");
-		String number = input.next();
+		String number = input.nextLine();
 
 		boolean numberOnly = true;
 		
