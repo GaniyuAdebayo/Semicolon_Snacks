@@ -9,9 +9,9 @@ public class CreditCardMain{
 		System.out.println("Enter Card Number:\nXXXX-XXXX-XXXX-XXXX or XXXX XXXX XXXX XXXX ");
 		String number = input.nextLine();
 
-		System.out.printf("Credit Card Type: %s%n", CreditCardEnhanced.creditCardType(number));
-		System.out.printf("Credit Card Number: %s%n", CreditCardEnhanced.getCardNumber(number));
-		System.out.printf("Credit Card Digit Length: %d%n", CreditCardEnhanced.cardTypeLength(number));
-		System.out.printf("Credit Card Validity Status: %s%n", CreditCardEnhanced.creditCardValidityStatus(number));
+		System.out.printf("Credit Card Type: %s%n", CreditCard.creditCardType(number));
+		System.out.printf("Credit Card Number: %s%n", CreditCard.getCardNumber(number));
+		System.out.printf("Credit Card Digit Length: %d%n", CreditCard.cardTypeLength(number));
+		System.out.printf("Credit Card Validity Status: %s%n", CreditCard.creditCardValidityStatus(number));
 	}
 }
