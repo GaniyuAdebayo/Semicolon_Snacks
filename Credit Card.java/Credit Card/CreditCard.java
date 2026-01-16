@@ -1,13 +1,15 @@
 
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.Scanner;
 
 public class CreditCard{
+
+	private static Scanner input = new Scanner (System.in);
 
 	
 	public static String creditCardValidityStatus(String cardNumber){
 
-		int cardNumberLength = cardTypeLength(cardNumber);
+		int cardNumberLength = cardNumber.length();
 
 		String status = "";
 		
@@ -47,8 +49,6 @@ public class CreditCard{
 
 	public static String creditCardType(String cardNumber){
 
-		cardNumber = getCardNumber(cardNumber);
-
 		String cardType = "";
 
 		if (cardNumber.startsWith("4")) {
@@ -66,31 +66,29 @@ public class CreditCard{
 		return cardType;
 	}
 
-	public static int cardTypeLength(String cardNumber){
 
-		cardNumber = getCardNumber(cardNumber);
+	public static String validateCardNumber(){
 
-		int cardNumberLength = cardNumber.length();
+		System.out.println("Enter Card Number:\nXXXX-XXXX-XXXX-XXXX or XXXX XXXX XXXX XXXX ");
 
-		return cardNumberLength;
-	
-	}
+		String number = input.nextLine();
 
+		boolean numberOnly = Pattern.matches("^[\\d\\s-]{13,19}$", number);
 
-	public static String getCardNumber(String number){
+		String cardNumber = number.replaceAll("\\D+", "");
 
-		boolean numberOnly = Pattern.matches("^[\\d\\s-]{16,19}$", number);
+		if (numberOnly && cardNumber.length() >= 13 && cardNumber.length() <= 16){
 
-		String validCC = number.replaceAll("\\D+", "");
-
-		if (numberOnly && validCC.length() >= 13 && validCC.length() <= 16){
-
-			return validCC;
+			return cardNumber;
 		}
 
-		else
-			throw new RuntimeException("Invalid Card Number");
-
+		else{
+				System.out.println("Invalid card number");
+				return validateCardNumber();
+			
+		}
+			
 
 	}
+
 }
