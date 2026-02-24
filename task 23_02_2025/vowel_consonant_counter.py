@@ -1,12 +1,14 @@
-sentence = input("Enter a sentence: ")
+sentence = input("Enter a sentence: ").lower()
 
 vowelCounter = 0
 consonantCounter = 0
-for letter in sentence:
+for letters in sentence:
 
-	if ((chr('A') <= letter >= chr('Z')) or (chr('a') <= letter >= chr('z'))):
+	letter = ord(letters)
 
-		if letter in "aeiou":
+	if ((ord('A') <= letter >= ord('Z')) or (ord('a') <= letter >= ord('z'))):
+
+		if letters in "aeiou":
 
 			vowelCounter += 1
 
