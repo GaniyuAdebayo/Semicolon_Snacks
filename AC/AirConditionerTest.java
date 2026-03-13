@@ -76,6 +76,17 @@ public class AirConditionerTest{
 		assertEquals(expectedTemperature, actual);
 	}
 
+	@Test
+	public void testACTemperatureDoesntIncreaseWhenOff(){
+		for (int increment = 1; increment <= 10; increment++){
+			AirConditioner.increaseTemperature();
+		}
+		int expectedTemperature = AirConditioner.checkTemperature();
+		int actual = 0;
+		assertEquals(expectedTemperature, actual);
+
+	}
+
 	
 
 }
