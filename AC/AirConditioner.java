@@ -18,13 +18,13 @@ public class AirConditioner{
 	}
 
 	public static void increaseTemperature(){
-		if(presentTemperature < 30){
+		if(presentTemperature < 30 && statusOfAC == true){
 			presentTemperature++;
 		}
 	}
 
 	public static void decreaseTemperature(){
-		if(presentTemperature > 16){
+		if(presentTemperature > 16 && statusOfAC == true){
 			presentTemperature--;
 		}
 	}
