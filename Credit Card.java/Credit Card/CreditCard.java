@@ -41,6 +41,10 @@ public class CreditCard{
 		else
 			status = "Invalid";
 
+		if (creditCardType(cardNumber).equals("Invalid Card Type"))
+
+			return "Invalid Card Type";
+
 		return status;
 
 	}

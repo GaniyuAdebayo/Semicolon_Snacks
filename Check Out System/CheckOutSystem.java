@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class CheckOutSystem{
 
+	private static Scanner input = new Scanner (System.in);
+
 	public static void main (String [] args){
 
 		ArrayList <String> items = new ArrayList <>();
 		ArrayList <Integer> units = new ArrayList <>();
 		ArrayList <Double> price = new ArrayList <>();
 
-		Scanner input = new Scanner (System.in);
 		LocalDateTime now = LocalDateTime.now();
 
 		System.out.println("What is the customer's name: ");
@@ -20,7 +21,9 @@ public class CheckOutSystem{
 		int number_of_units;
 		double price_per_unit;
 
-		while (true){
+		String loopContinuity = "yes";
+
+		while (loopContinuity.equals("yes")){
 	
 			System.out.println("What did the user buy?");
 			item_purchased = input.nextLine();
@@ -28,10 +31,8 @@ public class CheckOutSystem{
 			if (items.contains(item_purchased)){
 				int position = items.indexOf(item_purchased);
 				
-				System.out.println("How many pieces?");
-				number_of_units = input.nextInt();
+				number_of_units = CheckoutSystemMethods.collectUnits();
 
-				input.nextLine();
 				units.set(position, (units.get(position) + number_of_units));
 			}
 
@@ -39,105 +40,37 @@ public class CheckOutSystem{
 
 				items.add(item_purchased);
 
-				System.out.println("How many pieces?");
-				number_of_units = input.nextInt();
+				number_of_units = CheckoutSystemMethods.collectUnits();
 				units.add(number_of_units);
 
-				System.out.println("How much per unit?");
-				price_per_unit = input.nextDouble();
+				price_per_unit = CheckoutSystemMethods.collectPricePerUnit();
 				price.add(price_per_unit);
-
-				input.nextLine();
+				
 
 			}
+		
+			loopContinuity = CheckoutSystemMethods.continuityValidation();
 
-			System.out.println("Add more items?(yes/no)");
-			String continuity = input.nextLine().toLowerCase();
-
-			if (continuity.equals("no"))
-				break;
 		}
 
 		System.out.println("What is your name?");
 		String cashierName = input.nextLine();
 
-		System.out.println("How much discount will customer get?");
-		double discount = input.nextDouble();
+		double discount = CheckoutSystemMethods.collectDiscount();
 		
 		double total = 0.0;
-		for (int nCounter = 0; nCounter < units.size(); nCounter++){
+		for (int totalCounter = 0; totalCounter < units.size(); totalCounter++){
 
-			total += (units.get(nCounter) * price.get(nCounter));
+			total += (units.get(totalCounter) * price.get(totalCounter));
 
 		}
 
-		double totalDiscount = total * (discount/100);
-		double VAT = total * 0.175;
-		double totalBill = total - totalDiscount + VAT;
+		CheckoutSystemMethods.printInvoice(now, cashierName, customerName, items, units, price, discount, total);
+		double amountPaid = CheckoutSystemMethods.collectPayment();
+		CheckoutSystemMethods.printReceipt(now, cashierName, customerName, items, units, price, discount, total, amountPaid);
 
-		System.out.println("\n\nSEMICOLON STORES\nMAIN BRANCH\nLOCATION: 312, HERBERT MACAULAY WAY, SABO YABA, LAGOS.\nTEL: 08161750122");
-		System.out.printf("Date: %1$te %1$tb %1$tY %tr\n", now, now);
-		System.out.printf("Cashier: %s%nCustomer Name: %s%n", cashierName, customerName);
-
-		System.out.println("=============================================================");
-		System.out.printf("%15s%7s%15s%21s%n", "ITEM", "QTY", "PRICE", "TOTAL(NGN)");
-		System.out.println("-------------------------------------------------------------");
 		
-		for (int counter = 0; counter < items.size(); counter++){
-
-			System.out.printf("%15s%7d%16.2f%20.2f%n", items.get(counter), units.get(counter), price.get(counter), (units.get(counter) * price.get(counter)));
-
-		}
-
-		System.out.println("-------------------------------------------------------------");
-		System.out.printf("%38s%20.2f%n", "Sub Total:", total);
-		System.out.printf("%38s%20.2f%n", "Discount:", (discount*total));
-		System.out.printf("%38s%20.2f%n", "VAT @ 17.50%:", VAT);
-		System.out.println("=============================================================");
-		System.out.printf("%38s%20.2f%n", "Bill Total:", totalBill);
-		System.out.println("=============================================================");
-		System.out.printf("%40s %.2f%n", "THIS IS NOT A RECEIPT, KINDLY PAY", totalBill);
-		System.out.println("=============================================================");
-
-		System.out.println("\n\nHow much did the customer give to you?");
-		double payment = input.nextDouble();
-
-		if (payment >= totalBill){
-
-		System.out.println("\n\nSEMICOLON STORES\nMAIN BRANCH\nLOCATION: 312, HERBERT MACAULAY WAY, SABO YABA, LAGOS.\nTEL: 08161750122");
-		System.out.printf("Date: %1$te %1$tb %1$tY %tr\n", now, now);
-		System.out.printf("Cashier: %s%nCustomer Name: %s%n", cashierName, customerName);
-
-		System.out.println("=============================================================");
-		System.out.printf("%15s%7s%15s%21s%n", "ITEM", "QTY", "PRICE", "TOTAL(NGN)");
-		System.out.println("-------------------------------------------------------------");
-		
-		for (int counter = 0; counter < items.size(); counter++){
-
-			System.out.printf("%15s%7d%16.2f%20.2f%n", items.get(counter), units.get(counter), price.get(counter), (units.get(counter) * price.get(counter)));
-
-		}
-
-		System.out.println("-------------------------------------------------------------");
-		System.out.printf("%38s%20.2f%n", "Sub Total:", total);
-		System.out.printf("%38s%20.2f%n", "Discount:", (discount*total));
-		System.out.printf("%38s%20.2f%n", "VAT @ 17.50%:", VAT);
-		System.out.println("=============================================================");
-		System.out.printf("%38s%20.2f%n", "Bill Total:", totalBill);
-		System.out.printf("%38s%20.2f%n", "Amount Paid:", payment);
-		System.out.printf("%38s%20.2f%n", "Balance:", (payment - totalBill));
-		System.out.println("=============================================================");
-		System.out.printf("%40s%n", "THANK YOU FOR YOUR PATRONAGE");
-		System.out.println("=============================================================");
-
-
-		}
-
-		else{
-
-			System.out.println("Insufficient Funds!");
-		}
-
 	}
 
+	
 }

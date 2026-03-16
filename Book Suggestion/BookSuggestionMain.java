@@ -6,14 +6,13 @@ public class BookSuggestionMain{
 
 	public static void main (String [] args){
 
-		//BookSuggestion myBooks = new BookSuggestion ();
 		Scanner input = new Scanner (System.in);
 
 		ArrayList <String> library = new ArrayList<>(List.of("The Hobbit", "The Mystery", "Animal Farm", "Brave Kingdom"));
 
-		boolean forward = true;
+		String forward = "true";
 
-		while (forward){
+		while (forward.equals("true")){
 
 			String mainMenu = """
 			
@@ -24,20 +23,17 @@ public class BookSuggestionMain{
 				3. Remove Book
 				4. Update Book
 				5. Show Books
+				6. Exit
 
 			""";
 
 			System.out.println(mainMenu);
 
-			System.out.println("Enter Operation: ");
-
-			int mainMenuOption = input.nextInt();
-
-			input.nextLine();
+			int mainMenuOption = BookSuggestion.collectMenuChoice();
 
 			switch (mainMenuOption){
 
-				case 1:{
+				case 1:
 
 					String continuity;
 					do {
@@ -45,30 +41,36 @@ public class BookSuggestionMain{
 						System.out.printf("	Book Title: %s%n", BookSuggestion.getRandomBook(library));
 						System.out.printf("	Page: %d%n", BookSuggestion.getRandomPage());
 
-						System.out.println("Would you like to get another suggestion?(yes/no)");
-						continuity = input.nextLine().trim().toLowerCase();
+						continuity = BookSuggestion.continuityValidation();
 					}
 
 					while (continuity.equals("yes"));
 					break;
-				}
-				case 2:{
+				
+				case 2:
 					
 					System.out.println("Enter the book title: ");
 					String response = input.nextLine();
 
+					if (response.trim().length() > 0){
+
 					BookSuggestion.addBooksToShelve(library, response);
-					System.out.println("Book added successfully!");
+						System.out.println("Book added successfully!");
+					}
+
+					else{
+						System.out.println("No title added");
+					}
 					
 					break;
-				}
 				
-				case 3:{
+				
+				case 3:
 					
 					System.out.println("Enter the book title to remove: ");
 					String book = input.nextLine();
 					
-					if (library.toLowerCase().contains(book.toLowerCase())){
+					if (library.contains(book.toLowerCase().trim())){
 
 						BookSuggestion.removeBook(library, book);
 
@@ -78,14 +80,14 @@ public class BookSuggestionMain{
 						System.out.printf("%s is not in the library%n", book);
 					}
 					break;
-				}
-				case 4:{
+				
+				case 4:
 					System.out.println("Enter the old title: ");
-					String oldTitle = input.nextLine();
+					String oldTitle = input.nextLine().trim();
 
-					if (library.toLowerCase().contains(oldTitle.toLowerCase())){
+					if (library.contains(oldTitle.toLowerCase().trim())){
 						System.out.println("Enter the new title: ");
-						String newTitle = input.nextLine();
+						String newTitle = input.nextLine().trim();
 
 						BookSuggestion.updateBooks(library, oldTitle, newTitle);
 						System.out.printf("Book updated successfully!");
@@ -94,15 +96,23 @@ public class BookSuggestionMain{
 					else{
 						System.out.printf("%s is not in the library%n", oldTitle);}
 
-				}
+				
 					break;
-				case 5:{
+				case 5:
 					System.out.println("All Books");
 					System.out.printf("%s ", BookSuggestion.outputBooksInShelve(library));
 					break;
-				}
+				
+
+				case 6:
+
+					forward = "false";
+					break;
+
 				default:
-					forward = false;
+					System.out.println("Invalid number range, put between 1 - 6");
+				
+				
 			}
 
 		}

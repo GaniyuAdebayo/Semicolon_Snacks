@@ -23,29 +23,41 @@ public class TransactionLogApplicationMain{
 			""";
 
 			System.out.println(mainMenu);
-		
-			System.out.print("Enter your choice: ");
-			int menuChoice = input.nextInt();
+
+			int menuChoice = TransactionLogApplication.collectMenuChoice();
 			double amount;
 
 			switch(menuChoice){
 
 				case 1:
-					System.out.print("Enter deposit amount: ");
-					amount = input.nextDouble();
-					accountBalance = TransactionLogApplication.deposit(amount, accountBalance, transactions);
+					
+					amount = TransactionLogApplication.depositAmount();
+
+					if (amount <= 0){
+						System.out.println("Invalid input, deposit amount must be greater than 0");
+
+					}
+
+					else {
+						accountBalance = TransactionLogApplication.deposit(amount, accountBalance, transactions);
+
+					}
 					break;
 
 				case 2:
-					System.out.print("Enter withdrawal amount: ");
-					amount = input.nextDouble();
+					
+					amount = TransactionLogApplication.withdrawAmount();
 
-					if (amount <= accountBalance){
+					if (amount <= accountBalance && amount > 0.0){
 						accountBalance = TransactionLogApplication.withdraw(amount, accountBalance, transactions);
 					}
 
-					else{
+					else if (amount > accountBalance){
 						System.out.println("Withdrawal failed: insufficient fund");
+					}
+
+					else{
+						System.out.println("Invalid Input: Amount must be greater than 0");
 					}
 					break;
 
@@ -58,6 +70,9 @@ public class TransactionLogApplicationMain{
 					System.out.println("Thank you for using Transaction Log App");
 					decision = false;
 					break;
+
+				default:
+					System.out.println("Invalid Input");
 			}
 		}
 	}

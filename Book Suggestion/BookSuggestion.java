@@ -1,18 +1,22 @@
 import java.util.ArrayList;
 import java.security.SecureRandom;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 
 public class BookSuggestion{
+
+	private static Scanner input = new Scanner (System.in);
 
 	private static SecureRandom random = new SecureRandom();
 
 	public static ArrayList <String> booksArchive(ArrayList <String> archive){
 
-		for (Object book : archive){
+		for (String book : archive){
 
 			if (!(book instanceof String)){
 				
-				throw new RuntimeException("List of books contains non-string type");
+				throw new IllegalArgumentException("List of books contains non-string type");
 			}
 		}
 		return archive;
@@ -81,6 +85,33 @@ public class BookSuggestion{
 
 		archive.set(position, newBook);
 
+	}
+
+	public static int collectMenuChoice(){
+		try{
+			System.out.print("Enter Operation: ");
+			int menuChoice = input.nextInt();
+			input.nextLine();
+			return menuChoice;
+		} catch (InputMismatchException e){
+			System.out.println("Invalid Input!");
+			input.nextLine();
+			return collectMenuChoice();
+		}
+
+	}
+
+	public static String continuityValidation(){
+
+		System.out.println("Would you like to get another suggestion?(yes/no)");
+		String validation = input.nextLine().trim().toLowerCase();
+
+		if (validation.equals("yes") || validation.equals("no")){
+			return validation;
+		}
+
+		System.out.println("Invalid Input");
+		return continuityValidation();
 	}
 
 	

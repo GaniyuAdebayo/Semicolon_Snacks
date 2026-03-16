@@ -6,12 +6,22 @@ public class CaeserCipher{
 		Scanner input = new Scanner (System.in);
 
 		System.out.println("Enter the password to be encrypted: ");
-		String realPassword = input.nextLine();
+		String realPassword = input.nextLine().trim();
 
 		System.out.println("Enter the difference in encryption: ");
 		int difference = input.nextInt();
 
-		System.out.printf("The encrypted password is %s%n", passwordEncrytion(realPassword, difference));
+		if (realPassword.length() > 0){
+			System.out.printf("The encrypted password is %s%n", passwordEncrytion(realPassword, difference));
+
+		}
+
+		else{
+
+			System.out.println("Empty password declared");
+		}
+
+		
 
 	}
 

@@ -2,7 +2,7 @@ public class BackToSenderLLC {
 
 	public static int riderPayout(int no_of_successful_deliveries){
 
-		int basePay = 5000;
+		int BASEPAY = 5000;
 		int rate;
 
 		if (no_of_successful_deliveries < 0)
@@ -32,7 +32,7 @@ public class BackToSenderLLC {
 
 		}
 
-		return basePay + rate * no_of_successful_deliveries;
+		return BASEPAY + (rate * no_of_successful_deliveries);
 
 	}
 }

@@ -1,6 +1,10 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class TransactionLogApplication{
+
+	private static Scanner input = new Scanner (System.in);
 
 	public static double deposit(double amount, double accountBalance, ArrayList <String> transactions){
 
@@ -44,6 +48,46 @@ public class TransactionLogApplication{
 		else
 			System.out.println("No transaction yet.");
 
+	}
+
+	public static int collectMenuChoice(){
+		try{
+			System.out.print("Enter your choice: ");
+			int menuChoice = input.nextInt();
+			input.nextLine();
+			return menuChoice;
+		} catch (InputMismatchException e){
+			System.out.println("Invalid Input!");
+			input.nextLine();
+			return collectMenuChoice();
+		}
+
+	}
+
+	public static double depositAmount(){
+		try {
+			System.out.print("Enter deposit amount: ");
+			double amount = input.nextDouble();
+			input.nextLine();
+			return amount;
+		} catch(InputMismatchException e){
+			System.out.println("Invalid input!");
+			input.nextLine();
+			return depositAmount();
+		}
+	}
+
+	public static double withdrawAmount(){
+		try {
+			System.out.print("Enter withdrawal amount: ");
+			double amount = input.nextDouble();
+			input.nextLine();
+			return amount;
+		} catch(InputMismatchException e){
+			System.out.println("Invalid input!");
+			input.nextLine();
+			return withdrawAmount();
+		}
 	}
 
 }

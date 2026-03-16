@@ -6,16 +6,26 @@ public class MortgageCalculator{
 
 		Scanner input = new Scanner (System.in);
 
-		System.out.println("Enter the principal amount: ");
-		double principal = input.nextDouble();
+		double principal = MortgageCalculatorMethods.principalCollection();
 
-		System.out.println("Enter the annual interest rate: ");
-		double rate = input.nextDouble();
+		while (principal <= 0){
+			System.out.println("Invalid Input, put value greater than 0");
+			principal = MortgageCalculatorMethods.principalCollection();}
 
+		double rate = MortgageCalculatorMethods.rateCollection();
+
+		while (rate <= 0.0){
+			System.out.println("Invalid Input, put value greater than 0");
+			rate = MortgageCalculatorMethods.rateCollection();}
+
+		int years = MortgageCalculatorMethods.yearsCollection();
+
+		while (years <= 0){
+			System.out.println("Invalid Input, put value greater than 0");
+			years = MortgageCalculatorMethods.yearsCollection();}
+
+		
 		rate = rate/(100 * 12);
-
-		System.out.println("Enter the duration in years: ");
-		int years = input.nextInt();
 
 		int months = years * 12;
 
